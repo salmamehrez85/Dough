@@ -17,13 +17,13 @@ export function SiteNav() {
   const [open, setOpen] = useState(false)
 
   return (
-    <header className="fixed inset-x-0 top-0 z-50">
+    <header className="fixed inset-x-0 top-0 z-50 bg-cream/80 backdrop-blur-md border-b border-navy/5">
       <nav className="mx-auto flex max-w-7xl items-center justify-between px-6 py-5">
         <a
           href="#top"
           className="transition-transform hover:scale-105"
         >
-          <Logo className="text-2xl" />
+          <Logo className="text-2xl" textColor="text-navy" blobColor="bg-blob" />
         </a>
 
         <ul className="hidden items-center gap-8 md:flex">
@@ -31,7 +31,7 @@ export function SiteNav() {
             <li key={link.href}>
               <a
                 href={link.href}
-                className="text-sm lowercase text-cream/70 transition-colors hover:text-cream"
+                className="text-sm lowercase text-navy/70 transition-colors hover:text-navy"
               >
                 {link.label}
               </a>
@@ -41,7 +41,7 @@ export function SiteNav() {
 
         <a
           href="#contact"
-          className="hidden rounded-full bg-cream px-5 py-2 text-sm font-semibold lowercase text-navy transition-transform hover:scale-105 md:inline-block"
+          className="hidden rounded-full bg-navy px-5 py-2 text-sm font-semibold lowercase text-cream transition-transform hover:scale-105 md:inline-block"
         >
           let&apos;s bake
         </a>
@@ -49,7 +49,7 @@ export function SiteNav() {
         <button
           type="button"
           onClick={() => setOpen((v) => !v)}
-          className="text-cream md:hidden"
+          className="text-navy md:hidden"
           aria-label={open ? 'Close menu' : 'Open menu'}
           aria-expanded={open}
         >
