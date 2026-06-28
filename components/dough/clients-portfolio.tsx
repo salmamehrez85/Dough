@@ -1,3 +1,5 @@
+'use client'
+
 import Image from 'next/image'
 
 const CLIENTS = [
@@ -18,45 +20,50 @@ const CLIENTS = [
   { en: "Shawerma El Reem", ar: "شاورما الريم" },
 ]
 
-type Tile = {
+interface GridItem {
+  index: string
+  title: string
   src: string
-  label: string
-  category: string
-  className: string
+  spanClass: string
+  heightClass: string
 }
 
-// High-density masonry-style grid using Tailwind column / row spans.
-const TILES: Tile[] = [
+const GRID_ITEMS: GridItem[] = [
   {
-    src: '/work-photography.png',
-    label: "Barn's Coffee & Bakery Series",
-    category: 'Photography',
-    className: 'sm:col-span-2 sm:row-span-2',
+    index: "01",
+    title: "Photography",
+    src: "/photography image.png",
+    spanClass: "col-span-1",
+    heightClass: "h-[380px]"
   },
   {
-    src: '/work-cgi.png',
-    label: 'Kufta Whiskey Salad Study',
-    category: 'CGI',
-    className: 'sm:col-span-2',
+    index: "02",
+    title: "Grids",
+    src: "/grids image (2).png",
+    spanClass: "col-span-1",
+    heightClass: "h-[380px]"
   },
   {
-    src: '/work-packaging.png',
-    label: 'Kufta Batates Chips Packaging',
-    category: 'Packaging Design',
-    className: '',
+    index: "03",
+    title: "CGI",
+    src: "/CGI.png",
+    spanClass: "col-span-1 md:col-span-2",
+    heightClass: "min-h-[450px] h-[480px] md:h-[600px]"
   },
   {
-    src: '/work-activation.png',
-    label: 'Kufta Portable Event Booth',
-    category: 'Brand Activations',
-    className: '',
+    index: "04",
+    title: "Packaging Design",
+    src: "/Packaging-design.png",
+    spanClass: "col-span-1",
+    heightClass: "h-[380px]"
   },
   {
-    src: '/work-cgi.png',
-    label: "Barn's & Kufta Feed Grids",
-    category: 'Grids',
-    className: 'sm:col-span-2',
-  },
+    index: "05",
+    title: "Portable Event Booth",
+    src: "/portable-event-booth.png",
+    spanClass: "col-span-1",
+    heightClass: "h-[380px]"
+  }
 ]
 
 export function ClientsPortfolio() {
@@ -65,7 +72,7 @@ export function ClientsPortfolio() {
       {/* 05. clients — marquee ticker */}
       <div className="mx-auto max-w-7xl px-6">
         <h2 className="font-display text-3xl font-bold tracking-tight sm:text-5xl">
-        Clients
+          Clients
         </h2>
         <p className="mt-4 text-lg text-navy/70">They asked we shaped</p>
       </div>
@@ -101,34 +108,37 @@ export function ClientsPortfolio() {
         </div>
       </div>
 
-      {/* 06. portfolio — masonry grid */}
-      <div className="mx-auto mt-20 max-w-7xl px-6">
+      {/* 06. portfolio — editorial grid showcase */}
+      <div className="mx-auto mt-24 max-w-7xl px-6">
         <h2 className="font-display text-3xl font-bold tracking-tight sm:text-5xl">
           Portfolio
         </h2>
 
-        <div className="mt-10 grid auto-rows-[200px] grid-cols-2 gap-4 sm:grid-cols-4">
-          {TILES.map((tile, i) => (
-            <figure
-              key={`${tile.label}-${i}`}
-              className={`group relative overflow-hidden rounded-3xl bg-navy/5 ${tile.className}`}
+        <div className="mt-10 overflow-hidden rounded-3xl border border-navy/10 bg-navy/5 grid grid-cols-1 md:grid-cols-2 gap-1">
+          {GRID_ITEMS.map((item) => (
+            <div
+              key={item.index}
+              className={`group relative overflow-hidden bg-[#F5F3FA] ${item.spanClass} ${item.heightClass}`}
             >
+              {/* Background Image */}
               <Image
-                src={tile.src || '/placeholder.svg'}
-                alt={tile.label}
+                src={item.src}
+                alt={item.title}
                 fill
-                sizes="(max-width: 640px) 50vw, 25vw"
-                className="object-cover transition-transform duration-500 group-hover:scale-105"
+                sizes="(max-width: 768px) 100vw, 50vw"
+                className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
               />
-              <figcaption className="absolute inset-0 flex flex-col justify-end bg-gradient-to-t from-navy/80 via-navy/10 to-transparent p-5">
-                <span className="text-xs uppercase tracking-widest text-cream/70">
-                  {tile.category}
+
+              {/* Centered Overlay & Text Reveal */}
+              <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-center items-center text-center p-6 text-cream">
+                <span className="font-mono text-xs uppercase tracking-widest text-blob/90 mb-3">
+                  {item.index}
                 </span>
-                <span className="font-display text-lg font-semibold lowercase text-cream">
-                  {tile.label}
-                </span>
-              </figcaption>
-            </figure>
+                <h3 className="font-display text-2xl sm:text-3xl font-bold tracking-tight max-w-md">
+                  {item.title}
+                </h3>
+              </div>
+            </div>
           ))}
         </div>
       </div>
