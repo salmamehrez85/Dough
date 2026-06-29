@@ -2,24 +2,213 @@
 
 import { useState } from 'react'
 import Image from 'next/image'
-import { X, ChevronLeft, ChevronRight } from 'lucide-react'
+import { X, ChevronLeft, ChevronRight, CheckCircle2 } from 'lucide-react'
 
-const CLIENTS = [
-  { en: "Barn's", ar: "بارنز" },
-  { en: "Kufta", ar: "كوفتا" },
-  { en: "El Dahan", ar: "الدهان" },
-  { en: "Town Team", ar: "تاون تيم" },
-  { en: "Madghout Dajaj", ar: "مضغوط دجاج" },
-  { en: "Tant", ar: "طنط" },
-  { en: "Qasr El Kababgi", ar: "قصر الكبابجي" },
-  { en: "Tito's", ar: "تيتوز" },
-  { en: "Takhmeesa", ar: "تخميسة" },
-  { en: "Shrimp", ar: "شريمب" },
-  { en: "El Anfoshy", ar: "الأنفوشي" },
-  { en: "Akleh", ar: "أكلة" },
-  { en: "Bebek", ar: "بيبيك" },
-  { en: "El Rahawy", ar: "الرهاوي" },
-  { en: "Shawerma El Reem", ar: "شاورما الريم" },
+interface ClientDetail {
+  en: string
+  ar: string
+  sector: string
+  services: string
+  logo?: string
+  images: string[]
+}
+
+const CLIENTS: ClientDetail[] = [
+  {
+    en: "Barn's",
+    ar: "بارنز",
+    sector: "Coffee & Bakery (est. 1992)",
+    services: "Brand Identity, Packaging Design, Menu Photography",
+    logo: "",
+    images: [
+      "/photography1.png",
+      "/photography2.png",
+      "/photography3.png",
+      "/photography4.png"
+    ]
+  },
+  {
+    en: "Kufta",
+    ar: "كوفتا",
+    sector: "Street Food & Diner",
+    services: "Packaging Design, CGI Visualizations, Brand Activations",
+    logo: "",
+    images: [
+      "/CGI.png",
+      "/Packaging-design.png",
+      "/portable-event-booth.png",
+      "/grids image (2).png"
+    ]
+  },
+  {
+    en: "El Dahan",
+    ar: "الدهان",
+    sector: "Traditional Egyptian Grill",
+    services: "Food Styling & Photography, Editorial Grids",
+    logo: "",
+    images: [
+      "/photography1.png",
+      "/CGI.png",
+      "/photography3.png",
+      "/Packaging-design.png"
+    ]
+  },
+  {
+    en: "Town Team",
+    ar: "تاون تيم",
+    sector: "Apparel & Retail",
+    services: "Visual Merchandising Design, Store Campaign",
+    logo: "",
+    images: [
+      "/grids image (2).png",
+      "/portable-event-booth.png",
+      "/CGI.png",
+      "/photography2.png"
+    ]
+  },
+  {
+    en: "Madghout Dajaj",
+    ar: "مضغوط دجاج",
+    sector: "F&B Rice & Grill",
+    services: "Takeout Packaging Design, Typography",
+    logo: "",
+    images: [
+      "/Packaging-design.png",
+      "/grids image (2).png",
+      "/photography4.png",
+      "/CGI.png"
+    ]
+  },
+  {
+    en: "Tant",
+    ar: "طنط",
+    sector: "Traditional Eatery",
+    services: "Typography & Graphic Elements",
+    logo: "",
+    images: [
+      "/photography2.png",
+      "/Packaging-design.png",
+      "/grids image (2).png",
+      "/portable-event-booth.png"
+    ]
+  },
+  {
+    en: "Qasr El Kababgi",
+    ar: "قصر الكبابجي",
+    sector: "Premium Fine Dining",
+    services: "VIP Menu Design, Campaign Photography",
+    logo: "",
+    images: [
+      "/photography3.png",
+      "/CGI.png",
+      "/Packaging-design.png",
+      "/photography1.png"
+    ]
+  },
+  {
+    en: "Tito's",
+    ar: "تيتوز",
+    sector: "Pasta & Fast Casual",
+    services: "Branded Cup Design, Direct Photography",
+    logo: "",
+    images: [
+      "/grids image (2).png",
+      "/Packaging-design.png",
+      "/CGI.png",
+      "/photography2.png"
+    ]
+  },
+  {
+    en: "Takhmeesa",
+    ar: "تخميسة",
+    sector: "F&B Snacks & Coffee",
+    services: "Logo Refinements, Packaging Design",
+    logo: "",
+    images: [
+      "/Packaging-design.png",
+      "/grids image (2).png",
+      "/photography3.png",
+      "/CGI.png"
+    ]
+  },
+  {
+    en: "Shrimp",
+    ar: "شريمب",
+    sector: "Seafood Diner",
+    services: "Digital Campaigns, Packaging",
+    logo: "",
+    images: [
+      "/CGI.png",
+      "/Packaging-design.png",
+      "/portable-event-booth.png",
+      "/grids image (2).png"
+    ]
+  },
+  {
+    en: "El Anfoshy",
+    ar: "الأنفوشي",
+    sector: "Seafood Restaurant",
+    services: "Environmental Graphic Design, Menus",
+    logo: "",
+    images: [
+      "/photography1.png",
+      "/CGI.png",
+      "/photography3.png",
+      "/Packaging-design.png"
+    ]
+  },
+  {
+    en: "Akleh",
+    ar: "أكلة",
+    sector: "Casual Dining",
+    services: "Packaging, Menu Layouts",
+    logo: "",
+    images: [
+      "/Packaging-design.png",
+      "/grids image (2).png",
+      "/portable-event-booth.png",
+      "/CGI.png"
+    ]
+  },
+  {
+    en: "Bebek",
+    ar: "بيبيك",
+    sector: "F&B Dairy & Desserts",
+    services: "Illustration, Beverage Cups",
+    logo: "",
+    images: [
+      "/CGI.png",
+      "/Packaging-design.png",
+      "/grids image (2).png",
+      "/photography4.png"
+    ]
+  },
+  {
+    en: "El Rahawy",
+    ar: "الرهاوي",
+    sector: "Bakery",
+    services: "Identity Guidelines, Kraft Bags",
+    logo: "",
+    images: [
+      "/photography2.png",
+      "/Packaging-design.png",
+      "/grids image (2).png",
+      "/portable-event-booth.png"
+    ]
+  },
+  {
+    en: "Shawerma El Reem",
+    ar: "شاورما الريم",
+    sector: "Casual Diner",
+    services: "Campaign Visuals, Digital Grids",
+    logo: "",
+    images: [
+      "/photography3.png",
+      "/CGI.png",
+      "/Packaging-design.png",
+      "/photography1.png"
+    ]
+  }
 ]
 
 interface GridItem {
@@ -80,10 +269,17 @@ const GRID_ITEMS: GridItem[] = [
 ]
 
 export function ClientsPortfolio() {
+  const [activeClientIndex, setActiveClientIndex] = useState(0)
+  const activeClient = CLIENTS[activeClientIndex]
+
+  // Main Portfolio Slideshow state
   const [activeSlides, setActiveSlides] = useState<string[] | null>(null)
   const [activeSlideIndex, setActiveSlideIndex] = useState(0)
   const [sliderTitle, setSliderTitle] = useState('')
   const [sliderIndex, setSliderIndex] = useState('')
+
+  // Client Visual Collage overlay state (alternative to slideshow)
+  const [activeCollageClient, setActiveCollageClient] = useState<ClientDetail | null>(null)
 
   const handlePrev = (e: React.MouseEvent) => {
     e.stopPropagation()
@@ -138,8 +334,103 @@ export function ClientsPortfolio() {
         </div>
       </div>
 
+      {/* Interactive Client Directory Index Showcase */}
+      <div className="mx-auto mt-16 max-w-7xl px-6">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 border-t border-navy/10 pt-16">
+          {/* Left Column: Interactive Client Directory List */}
+          <div className="lg:col-span-5 flex flex-col gap-1 max-h-[500px] overflow-y-auto pr-4 scrollbar-thin">
+            <h3 className="font-display text-xs uppercase font-extrabold tracking-widest text-navy/45 mb-4">
+              Client Index Directory
+            </h3>
+            {CLIENTS.map((client, idx) => {
+              const isActive = activeClientIndex === idx
+              return (
+                <button
+                  key={client.en}
+                  onClick={() => setActiveClientIndex(idx)}
+                  className={`w-full flex items-center justify-between py-3.5 border-b border-navy/10 text-left transition-all duration-300 cursor-pointer ${
+                    isActive
+                      ? 'text-navy font-bold pl-4 border-b-2 border-navy'
+                      : 'text-navy/55 hover:text-navy hover:pl-2'
+                  }`}
+                >
+                  <div className="flex items-center gap-4">
+                    <span className="font-mono text-xs text-navy/45">{(idx + 1).toString().padStart(2, '0')}</span>
+                    <span className="font-display font-medium text-base sm:text-lg leading-tight lowercase">
+                      {client.en} <span className="font-arabic text-xs font-normal text-navy/40 ml-1">({client.ar})</span>
+                    </span>
+                  </div>
+                  <span className={`text-blob transition-transform duration-300 ${isActive ? 'scale-125 rotate-45' : 'opacity-0 scale-75'}`}>✳</span>
+                </button>
+              )
+            })}
+          </div>
+
+          {/* Right Column: Dynamic Case/Client Showcase Panel */}
+          <div className="lg:col-span-7 flex flex-col">
+            <div className="bg-[#f3eee3] rounded-3xl p-6 sm:p-8 flex flex-col justify-between min-h-[460px] relative overflow-hidden transition-all duration-500 border border-navy/5 shadow-sm hover:shadow-md animate-in fade-in duration-300">
+              
+              {/* Header: Name, Sector, and Logo box */}
+              <div className="flex items-center justify-between border-b border-navy/10 pb-5">
+                <div>
+                  <span className="text-[10px] uppercase font-extrabold tracking-wider text-water">
+                    {activeClient.sector}
+                  </span>
+                  <h4 className="font-display text-2xl sm:text-3xl font-extrabold text-navy mt-1 lowercase leading-tight">
+                    {activeClient.en} <span className="font-arabic text-xl font-medium text-navy/50">({activeClient.ar})</span>
+                  </h4>
+                  <p className="text-xs text-navy/60 font-mono mt-1 lowercase">{activeClient.services}</p>
+                </div>
+                
+                {/* Logo Box Placeholder */}
+                <div className="size-16 shrink-0 rounded-2xl bg-navy flex items-center justify-center shadow-inner relative overflow-hidden border border-navy/10">
+                  {activeClient.logo ? (
+                    <Image
+                      src={activeClient.logo}
+                      alt={`${activeClient.en} logo`}
+                      fill
+                      className="object-contain p-2"
+                    />
+                  ) : (
+                    <span className="font-display font-extrabold text-xl text-cream select-none uppercase">
+                      {activeClient.en.slice(0, 2)}
+                    </span>
+                  )}
+                </div>
+              </div>
+
+              {/* Gallery Grid of Client Projects */}
+              <div className="mt-6 flex-1 flex flex-col">
+              
+                
+                <div className="overflow-y-auto max-h-[300px] pr-1.5 scrollbar-thin">
+                  <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
+                    {activeClient.images.map((imgUrl, i) => (
+                      <div 
+                        key={`${imgUrl}-${i}`}
+                        onClick={() => setActiveCollageClient(activeClient)}
+                        className="relative aspect-video rounded-xl overflow-hidden bg-navy/5 border border-navy/10 group/img shadow-sm hover:shadow-md transition-shadow duration-300 cursor-pointer"
+                      >
+                        <Image
+                          src={imgUrl}
+                          alt={`${activeClient.en} showcase image ${i + 1}`}
+                          fill
+                          sizes="(max-width: 768px) 50vw, 30vw"
+                          className="object-cover transition-transform duration-500 ease-out group-hover/img:scale-105"
+                        />
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+
       {/* 06. portfolio — editorial grid showcase */}
-      <div className="mx-auto mt-24 max-w-7xl px-6">
+      <div className="mx-auto mt-32 max-w-7xl px-6">
         <h2 className="font-display text-3xl font-bold tracking-tight sm:text-5xl">
           Portfolio
         </h2>
@@ -179,13 +470,13 @@ export function ClientsPortfolio() {
         </div>
       </div>
 
-      {/* Image Slider Modal */}
+      {/* Image Slideshow Modal (for Main Portfolio Grid) */}
       {activeSlides && (
         <div
           className="fixed inset-0 z-50 flex flex-col justify-between bg-black/95 p-6 sm:p-10 backdrop-blur-md animate-in fade-in duration-300"
           onClick={() => setActiveSlides(null)}
         >
-          {/* Top Bar: Title & Close Button */}
+          {/* Top Bar */}
           <div className="flex items-center justify-between text-cream z-10">
             <div className="flex flex-col">
               <span className="font-mono text-xs uppercase tracking-widest text-blob/90">{sliderIndex}</span>
@@ -193,54 +484,44 @@ export function ClientsPortfolio() {
             </div>
             <button
               onClick={() => setActiveSlides(null)}
-              className="rounded-full bg-cream/10 p-3 text-cream hover:bg-cream/25 transition-colors"
-              aria-label="Close slider"
+              className="rounded-full bg-cream/10 p-3 text-cream hover:bg-cream/25 transition-colors cursor-pointer"
             >
               <X className="size-6" />
             </button>
           </div>
 
-          {/* Main Slider Area */}
+          {/* Main Slide */}
           <div className="relative flex-1 flex items-center justify-center py-6">
-            {/* Previous Button */}
             {activeSlides.length > 1 && (
               <button
                 onClick={handlePrev}
-                className="absolute left-2 sm:left-4 z-10 rounded-full bg-cream/10 p-3 text-cream hover:bg-cream/25 transition-colors backdrop-blur"
-                aria-label="Previous slide"
+                className="absolute left-2 sm:left-4 z-10 rounded-full bg-cream/10 p-3 text-cream hover:bg-cream/25 transition-colors backdrop-blur cursor-pointer"
               >
                 <ChevronLeft className="size-6" />
               </button>
             )}
 
-            {/* Center Active Image */}
-            <div
-              className="relative w-full h-[60vh] max-w-4xl"
-              onClick={(e) => e.stopPropagation()}
-            >
+            <div className="relative w-full h-[60vh] max-w-4xl" onClick={(e) => e.stopPropagation()}>
               <Image
                 src={activeSlides[activeSlideIndex]}
                 alt={`${sliderTitle} slide ${activeSlideIndex + 1}`}
                 fill
-                sizes="(max-width: 1200px) 100vw, 1200px"
                 className="object-contain"
                 priority
               />
             </div>
 
-            {/* Next Button */}
             {activeSlides.length > 1 && (
               <button
                 onClick={handleNext}
-                className="absolute right-2 sm:right-4 z-10 rounded-full bg-cream/10 p-3 text-cream hover:bg-cream/25 transition-colors backdrop-blur"
-                aria-label="Next slide"
+                className="absolute right-2 sm:right-4 z-10 rounded-full bg-cream/10 p-3 text-cream hover:bg-cream/25 transition-colors backdrop-blur cursor-pointer"
               >
                 <ChevronRight className="size-6" />
               </button>
             )}
           </div>
 
-          {/* Bottom Bar: Indicators & Counter */}
+          {/* Bottom Indicators */}
           <div className="flex flex-col items-center gap-4 text-cream z-10">
             {activeSlides.length > 1 && (
               <div className="flex gap-2">
@@ -254,7 +535,6 @@ export function ClientsPortfolio() {
                     className={`size-2 rounded-full transition-all ${
                       idx === activeSlideIndex ? 'bg-blob w-6' : 'bg-cream/30'
                     }`}
-                    aria-label={`Go to slide ${idx + 1}`}
                   />
                 ))}
               </div>
@@ -262,6 +542,65 @@ export function ClientsPortfolio() {
             <span className="font-mono text-xs text-cream/60">
               {activeSlideIndex + 1} / {activeSlides.length}
             </span>
+          </div>
+        </div>
+      )}
+
+      {/* Full-Screen Client Visual Collage Board (Alternative to Slideshow) */}
+      {activeCollageClient && (
+        <div
+          className="fixed inset-0 z-50 bg-[#122940]/95 backdrop-blur-lg overflow-y-auto p-6 sm:p-12 text-cream flex flex-col items-center animate-in fade-in duration-300"
+          onClick={() => setActiveCollageClient(null)}
+        >
+          <div className="w-full max-w-7xl">
+            {/* Top Bar: Case Header & Close Button */}
+            <div className="flex justify-between items-start border-b border-cream/10 pb-6 mb-10">
+              <div>
+                <span className="font-mono text-xs uppercase tracking-widest text-blob/90">
+                  {activeCollageClient.sector}
+                </span>
+                <h3 className="font-display text-3xl sm:text-4xl font-extrabold mt-2 lowercase leading-tight">
+                  {activeCollageClient.en} <span className="font-arabic text-2xl font-light text-cream/55">({activeCollageClient.ar})</span>
+                </h3>
+                <p className="text-xs uppercase font-extrabold tracking-widest text-[#457D9E] bg-[#457D9E]/10 border border-[#457D9E]/20 rounded-full px-4 py-1.5 inline-block mt-3">
+                  {activeCollageClient.services}
+                </p>
+              </div>
+
+              <button
+                onClick={() => setActiveCollageClient(null)}
+                className="rounded-full bg-cream/10 p-3 text-cream hover:bg-cream/25 transition-colors cursor-pointer"
+                aria-label="Close Case Board"
+              >
+                <X className="size-6" />
+              </button>
+            </div>
+
+            {/* Masonry-Style Image Board Showcase */}
+            <div
+              className="columns-1 sm:columns-2 md:columns-3 gap-6 space-y-6 pb-12"
+              onClick={(e) => e.stopPropagation()}
+            >
+              {activeCollageClient.images.map((imgUrl, idx) => (
+                <div
+                  key={`${imgUrl}-${idx}`}
+                  className="break-inside-avoid relative rounded-3xl overflow-hidden bg-cream/5 border border-cream/10 shadow-lg group hover:shadow-2xl transition-all duration-300 hover:-translate-y-1"
+                >
+                  <img
+                    src={imgUrl}
+                    alt={`${activeCollageClient.en} design board visual ${idx + 1}`}
+                    className="w-full h-auto object-cover transition-transform duration-500 ease-out group-hover:scale-[1.02]"
+                    loading="lazy"
+                  />
+                  {/* Subtle label overlay inside collage */}
+                  <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/85 via-black/10 to-transparent p-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    <span className="text-[10px] font-mono tracking-widest text-blob uppercase">
+                      Deliverable #{(idx + 1).toString().padStart(2, '0')}
+                    </span>
+                  </div>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       )}
