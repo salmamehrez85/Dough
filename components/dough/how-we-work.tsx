@@ -1,5 +1,6 @@
 import { WaveDivider } from './wave-divider'
 import { Blob } from './blob'
+import { Reveal } from './reveal'
 
 const STEPS = [
   {
@@ -33,31 +34,35 @@ export function HowWeWork() {
       />
 
       <div className="mx-auto max-w-7xl px-6">
-        <h2 className="font-display text-3xl font-bold tracking-tight sm:text-5xl">
-          How we work
-        </h2>
+        <Reveal duration={800}>
+          <h2 className="font-display text-3xl font-bold tracking-tight sm:text-5xl">
+            How we work
+          </h2>
+        </Reveal>
 
         <div className="mt-14 grid gap-x-6 gap-y-12 sm:grid-cols-2 lg:grid-cols-5">
           {STEPS.map((step, i) => (
-            <div key={step.title} className="flex flex-col items-center text-center">
-              <Blob
-                variant={i}
-                float
-                className="size-40 bg-blob text-navy"
-              >
-                <span className="flex flex-col gap-1">
-                  <span className="font-display text-xs font-semibold uppercase tracking-widest text-navy/50">
-                    step {i + 1}
+            <Reveal key={step.title} delay={i * 120} duration={850} className="w-full">
+              <div className="flex flex-col items-center text-center h-full">
+                <Blob
+                  variant={i}
+                  float
+                  className="size-40 bg-blob text-navy"
+                >
+                  <span className="flex flex-col gap-1">
+                    <span className="font-display text-xs font-semibold uppercase tracking-widest text-navy/50">
+                      step {i + 1}
+                    </span>
+                    <span className="px-4 font-display text-lg font-bold lowercase leading-tight">
+                      {step.title}
+                    </span>
                   </span>
-                  <span className="px-4 font-display text-lg font-bold lowercase leading-tight">
-                    {step.title}
-                  </span>
-                </span>
-              </Blob>
-              <p className="mt-6 text-pretty text-sm leading-relaxed text-cream/70">
-                {step.body}
-              </p>
-            </div>
+                </Blob>
+                <p className="mt-6 text-pretty text-sm leading-relaxed text-cream/70">
+                  {step.body}
+                </p>
+              </div>
+            </Reveal>
           ))}
         </div>
       </div>

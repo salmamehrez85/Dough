@@ -1,4 +1,5 @@
 import { WaveDivider } from './wave-divider'
+import { Reveal } from './reveal'
 
 const POINTS = [
   'At Dough, we believe in the magic of creativity and the power of innovation.',
@@ -19,23 +20,26 @@ export function WhyUs() {
       />
 
       <div className="mx-auto max-w-7xl px-6">
-        <h2 className="font-display text-3xl font-bold tracking-tight sm:text-5xl">
-          Why us?
-        </h2>
+        <Reveal duration={800}>
+          <h2 className="font-display text-3xl font-bold tracking-tight sm:text-5xl">
+            Why us?
+          </h2>
+        </Reveal>
 
         <div className="mt-12 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
           {POINTS.map((point, i) => (
-            <div
-              key={point}
-              className="rounded-3xl border border-cream/10 bg-cream/5 p-8 transition-colors hover:bg-cream/10"
-            >
-              <span className="font-display text-2xl font-bold text-blob">
-                {String(i + 1).padStart(2, '0')}
-              </span>
-              <p className="mt-4 text-pretty leading-relaxed text-cream/80">
-                {point}
-              </p>
-            </div>
+            <Reveal key={point} delay={i * 100} duration={700} className="h-full">
+              <div
+                className="h-full rounded-3xl border border-cream/10 bg-cream/5 p-8 transition-colors hover:bg-cream/10"
+              >
+                <span className="font-display text-2xl font-bold text-blob">
+                  {String(i + 1).padStart(2, '0')}
+                </span>
+                <p className="mt-4 text-pretty leading-relaxed text-cream/80">
+                  {point}
+                </p>
+              </div>
+            </Reveal>
           ))}
         </div>
       </div>
