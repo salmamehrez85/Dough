@@ -4,8 +4,6 @@ import { WhoWeAre } from '@/components/dough/who-we-are'
 import { WhyUs } from '@/components/dough/why-us'
 import { WhatWeBake } from '@/components/dough/what-we-bake'
 import { HowWeWork } from '@/components/dough/how-we-work'
-import { ClientsPortfolio } from '@/components/dough/clients-portfolio'
-import { Contact } from '@/components/dough/contact'
 
 export default function Page() {
   return (
@@ -16,8 +14,6 @@ export default function Page() {
       <WhyUs />
       <WhatWeBake />
       <HowWeWork />
-      <ClientsPortfolio />
-      <Contact />
     </main>
   )
 }

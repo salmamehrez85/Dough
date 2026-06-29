@@ -1,16 +1,17 @@
 'use client'
 
 import { useState } from 'react'
+import Link from 'next/link'
 import { Menu, X } from 'lucide-react'
 import { Logo } from './logo'
 
 const LINKS = [
-  { label: 'who we are', href: '#who' },
-  { label: 'why us', href: '#why' },
-  { label: 'what we bake', href: '#bake' },
-  { label: 'how we work', href: '#work' },
-  { label: 'portfolio', href: '#portfolio' },
-  { label: 'contact', href: '#contact' },
+  { label: 'who we are', href: '/#who' },
+  { label: 'why us', href: '/#why' },
+  { label: 'what we bake', href: '/#bake' },
+  { label: 'how we work', href: '/#work' },
+  { label: 'portfolio', href: '/portfolio' },
+  { label: 'contact', href: '/contact' },
 ]
 
 export function SiteNav() {
@@ -19,32 +20,32 @@ export function SiteNav() {
   return (
     <header className="fixed inset-x-0 top-0 z-50 bg-cream/80 backdrop-blur-md border-b border-navy/5">
       <nav className="mx-auto flex max-w-7xl items-center justify-between px-6 py-5">
-        <a
-          href="#top"
+        <Link
+          href="/"
           className="transition-transform hover:scale-105"
         >
           <Logo className="text-2xl" textColor="text-navy" blobColor="bg-blob" />
-        </a>
+        </Link>
 
         <ul className="hidden items-center gap-8 md:flex">
           {LINKS.map((link) => (
             <li key={link.href}>
-              <a
+              <Link
                 href={link.href}
                 className="text-sm lowercase text-navy/70 transition-colors hover:text-navy"
               >
                 {link.label}
-              </a>
+              </Link>
             </li>
           ))}
         </ul>
 
-        <a
-          href="#contact"
+        <Link
+          href="/contact"
           className="hidden rounded-full bg-navy px-5 py-2 text-sm font-semibold lowercase text-cream transition-transform hover:scale-105 md:inline-block"
         >
           let&apos;s bake
-        </a>
+        </Link>
 
         <button
           type="button"
@@ -62,13 +63,13 @@ export function SiteNav() {
           <ul className="flex flex-col gap-4">
             {LINKS.map((link) => (
               <li key={link.href}>
-                <a
+                <Link
                   href={link.href}
                   onClick={() => setOpen(false)}
                   className="text-lg lowercase text-cream/80 transition-colors hover:text-cream"
                 >
                   {link.label}
-                </a>
+                </Link>
               </li>
             ))}
           </ul>
