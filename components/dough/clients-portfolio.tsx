@@ -33,7 +33,7 @@ const CLIENTS: ClientDetail[] = [
     ar: "كوفتا",
     sector: "Street Food & Diner",
     services: "Packaging Design, CGI Visualizations, Brand Activations",
-    logo: "/logos/logo 2.png",
+    logo: "/logos/kufta.webp",
     images: [
       "/CGI.png",
       "/Packaging-design.png",
@@ -46,7 +46,7 @@ const CLIENTS: ClientDetail[] = [
     ar: "الدهان",
     sector: "Traditional Egyptian Grill",
     services: "Food Styling & Photography, Editorial Grids",
-    logo: "",
+    logo: "/logos/eldahan.jpg",
     images: [
       "/photography1.png",
       "/CGI.png",
@@ -59,7 +59,7 @@ const CLIENTS: ClientDetail[] = [
     ar: "تاون تيم",
     sector: "Apparel & Retail",
     services: "Visual Merchandising Design, Store Campaign",
-    logo: "",
+    logo: "/logos/townteam.png",
     images: [
       "/grids image (2).png",
       "/portable-event-booth.png",
@@ -85,7 +85,7 @@ const CLIENTS: ClientDetail[] = [
     ar: "طنط",
     sector: "Traditional Eatery",
     services: "Typography & Graphic Elements",
-    logo: "",
+    logo: "/logos/tant.webp",
     images: [
       "/photography2.png",
       "/Packaging-design.png",
@@ -111,7 +111,7 @@ const CLIENTS: ClientDetail[] = [
     ar: "تيتوز",
     sector: "Pasta & Fast Casual",
     services: "Branded Cup Design, Direct Photography",
-    logo: "",
+    logo: "/logos/tito's.png",
     images: [
       "/grids image (2).png",
       "/Packaging-design.png",
@@ -150,7 +150,7 @@ const CLIENTS: ClientDetail[] = [
     ar: "الأنفوشي",
     sector: "Seafood Restaurant",
     services: "Environmental Graphic Design, Menus",
-    logo: "",
+    logo: "/logos/alanfoshy.webp",
     images: [
       "/photography1.png",
       "/CGI.png",
@@ -214,7 +214,8 @@ const CLIENTS: ClientDetail[] = [
 
 const MARQUEE_LOGOS = [
   { src: "/logos/Logo Barn's-.png", alt: "Barn's" },
-  { src: "/logos/logo 2.png", alt: "Kufta / Ziko" },
+  { src: "/logos/kufta.webp", alt: "Kufta" },
+  { src: "/logos/logo 2.png", alt: "Ziko" },
   { src: "/logos/مضغووووط-01.png", alt: "Madghout Dajaj" },
   { src: "/logos/122432_935612.webp", alt: "Qasr El Kababgi" },
   { src: "/logos/logo (1).png", alt: "Takhmeesa" },
@@ -226,7 +227,12 @@ const MARQUEE_LOGOS = [
   { src: "/logos/lil logo-01.png", alt: "Lil Kitchen" },
   { src: "/logos/2000logo0.png", alt: "Crepe 2000" },
   { src: "/logos/تعديل اللوجو 2019 copy (1).png", alt: "Sayed Hanafy" },
-  { src: "/logos/logo faroja00.png", alt: "Farooja" }
+  { src: "/logos/logo faroja00.png", alt: "Farooja" },
+  { src: "/logos/eldahan.jpg", alt: "El Dahan" },
+  { src: "/logos/townteam.png", alt: "Town Team" },
+  { src: "/logos/tant.webp", alt: "Tant" },
+  { src: "/logos/tito's.png", alt: "Tito's" },
+  { src: "/logos/alanfoshy.webp", alt: "El Anfoshy" }
 ]
 
 interface GridItem {
@@ -331,7 +337,7 @@ export function ClientsPortfolio() {
                 src={logo.src}
                 alt={logo.alt}
                 fill
-                className="object-contain filter grayscale hover:grayscale-0 transition-all duration-300"
+                className="object-contain transition-transform hover:scale-105 duration-300"
               />
             </div>
           ))}
@@ -347,7 +353,7 @@ export function ClientsPortfolio() {
                 src={logo.src}
                 alt={logo.alt}
                 fill
-                className="object-contain filter grayscale hover:grayscale-0 transition-all duration-300"
+                className="object-contain transition-transform hover:scale-105 duration-300"
               />
             </div>
           ))}
