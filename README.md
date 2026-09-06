@@ -78,7 +78,7 @@ The site strengthened Dough’s digital presence with a scroll-stopping hero, st
 
 **[▶ Watch site walkthrough](./docs/dough-demo.mp4)** (~1 min)
 
-Home hero → Who We Are → What We Bake → Featured → How We Work → Why Us → Work carousel → Akleh case study → Contact → Uncle Dough → Arabic homepage.
+Homepage Arabic glance → Home hero → Who We Are → What We Bake → Featured → How We Work → Why Us → Work carousel → Akleh case study → Contact → Uncle Dough.
 
 ---
 
